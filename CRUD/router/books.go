@@ -25,8 +25,8 @@ func init() {
 	})
 }
 
-func AddBooksGroup(app *fiber.App) {
-	bookGroup := app.Group("/books")
+func AddtitlesGroup(app *fiber.App) {
+	bookGroup := app.Group("/titles")
 
 	bookGroup.Get("/", getBooks)
 	bookGroup.Get("/:id", getBook)
@@ -35,15 +35,15 @@ func AddBooksGroup(app *fiber.App) {
 	bookGroup.Delete("/:id", deleteBook)
 }
 
-func getsBooks(c *fiber.Ctx) error {
-	// Get all book keys from a Redis Set named "books"
-	keys, err := redisClient.SMembers(c.Context(), "books").Result()
+func getstitles(c *fiber.Ctx) error {
+	// Get all book keys from a Redis Set named "titles"
+	keys, err := redisClient.SMembers(c.Context(), "titles").Result()
 	if err != nil {
 		return c.Status(500).JSON(fiber.Map{"error": err.Error()})
 	}
 
-	// Create an empty slice to store books
-	books := make([]models.Book, 0)
+	// Create an empty slice to store titles
+	titles := make([]models.Book, 0)
 
 	// Loop through each key and get the corresponding book data using HGETALL
 	for _, key := range keys {
@@ -64,10 +64,10 @@ func getsBooks(c *fiber.Ctx) error {
 			return c.Status(500).JSON(fiber.Map{"error": err.Error()})
 		}
 
-		books = append(books, book)
+		titles = append(titles, book)
 	}
 
-	return c.Status(200).JSON(fiber.Map{"data": books})
+	return c.Status(200).JSON(fiber.Map{"data": titles})
 }
 
 func getsBook(c *fiber.Ctx) error {
