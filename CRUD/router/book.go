@@ -1,8 +1,8 @@
 package router
 
 import (
-	"golang-fiber-crud/common"
-	"golang-fiber-crud/models"
+	"github.com/bmdavis419/fiber-mongo-example/common"
+	"github.com/bmdavis419/fiber-mongo-example/models"
 	"github.com/gofiber/fiber/v2"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
