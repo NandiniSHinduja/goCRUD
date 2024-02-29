@@ -3,8 +3,8 @@ package main
 import (
 	"encoding/json"
 	"errors"
-	"golang-fiber-crud/common"
-	"golang-fiber-crud/router"
+	"github.com/bmdavis419/fiber-mongo-example/common"
+	"github.com/bmdavis419/fiber-mongo-example/router"
 	"os"
 
 	"github.com/bmdavis419/fiber-mongo-example/models"
