@@ -1,10 +1,10 @@
 package main
 
 import (
+	"golang-fiber-crud/common"
+	"golang-fiber-crud/router"
 	"os"
 
-	"github.com/bmdavis419/fiber-mongo-example/common"
-	"github.com/bmdavis419/fiber-mongo-example/router"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/logger"
@@ -28,6 +28,11 @@ func run() error {
 
 	// init db
 	err = common.InitDB()
+	if err != nil {
+		return err
+	}
+
+	err = router.InitDB2()
 	if err != nil {
 		return err
 	}
