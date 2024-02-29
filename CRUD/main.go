@@ -50,6 +50,7 @@ func run() error {
 
 	// add routes
 	router.AddBookGroup(app)
+	router.AddtitlesGroup(app)
 
 	// start server
 	var port string
