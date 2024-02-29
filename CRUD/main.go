@@ -49,7 +49,7 @@ func run() error {
 	app.Use(cors.New())
 
 	// add routes
-	router.AddBookGroup(app)
+	// router.AddBookGroup(app)
 	router.AddtitlesGroup(app)
 
 	// start server
