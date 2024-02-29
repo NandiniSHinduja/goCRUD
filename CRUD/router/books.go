@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"os"
 
-	// "errors"
+	"errors"
 	// "fmt"
 	// "strconv"
 
@@ -18,11 +18,17 @@ import (
 // Global Redis client instance (replace with your connection details)
 var redisClient *redis.Client
 
-func init() {
+func InitDB2() error {
 	uri2 := os.Getenv("REDIS_URI")
+	if uri2 == "" {
+		return errors.New("you must set your 'REDIS_URI' environmental variable")
+
+	}
 	redisClient = redis.NewClient(&redis.Options{
 		Addr: uri2, // Replace with your Redis server address and port
 	})
+	return nil
+
 }
 
 func AddtitlesGroup(app *fiber.App) {
