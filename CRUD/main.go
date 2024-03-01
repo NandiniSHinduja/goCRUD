@@ -36,11 +36,6 @@ func run() error {
 		return err
 	}
 
-	err = router.InitDB2()
-	if err != nil {
-		return err
-	}
-
 	// defer closing db
 	defer common.CloseDB()
 
