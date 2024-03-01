@@ -3,8 +3,8 @@ package main
 import (
 	"encoding/json"
 	"errors"
-	"github.com/bmdavis419/fiber-mongo-example/common"
-	"github.com/bmdavis419/fiber-mongo-example/router"
+	"golang-fiber-crud/common"
+	"golang-fiber-crud/router"
 	"os"
 
 	"github.com/bmdavis419/fiber-mongo-example/models"
@@ -23,19 +23,6 @@ func main() {
 	}
 }
 
-func InitDB2() error {
-	uri2 := os.Getenv("REDIS_URI")
-	if uri2 == "" {
-		return errors.New("you must set your 'REDIS_URI' environmental variable")
-
-	}
-	redisClient = redis.NewClient(&redis.Options{
-		Addr: uri2, // Replace with your Redis server address and port
-	})
-	return nil
-
-}
-
 func run() error {
 	// init env
 	err := common.LoadEnv()
@@ -49,7 +36,7 @@ func run() error {
 		return err
 	}
 
-	err = InitDB2()
+	err = router.InitDB2()
 	if err != nil {
 		return err
 	}
@@ -82,6 +69,19 @@ func run() error {
 }
 
 var redisClient *redis.Client
+
+func InitDB2() error {
+	uri2 := os.Getenv("REDIS_URI")
+	if uri2 == "" {
+		return errors.New("you must set your 'REDIS_URI' environmental variable")
+
+	}
+	redisClient = redis.NewClient(&redis.Options{
+		Addr:     "viaduct.proxy.rlwy.net:17085",
+		Password: "FiaoNbEnjgDo1EPI6PEaikhLNhemnAia"})
+	return nil
+
+}
 
 func AddtitlesGroup(app *fiber.App) {
 	bookGroup := app.Group("/titles")
